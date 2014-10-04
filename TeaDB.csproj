@@ -42,6 +42,8 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="io.cofeemon.teadb\DBOperation.cs" />
+    <Compile Include="io.cofeemon.teadb\DTO.cs" />
+    <Compile Include="io.cofeemon.teadb\Persister.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="io.cofeemon.teadb\StringDBOperation.cs" />

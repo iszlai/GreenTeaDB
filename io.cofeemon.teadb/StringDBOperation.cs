@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using TeaDB.io.cofeemon.teadb;
 
 namespace TeaDB
 {
@@ -37,7 +38,10 @@ namespace TeaDB
 
         public void store(string key, string value)
         {
-            inMemoryStore.Add(StringDBOperation.hash(key), value);
+            var internalkey = StringDBOperation.hash(key);
+            inMemoryStore.Add(internalkey, value);
+            Persister.save(new DTO(internalkey, value));
+            
 
         }
 
@@ -47,8 +51,12 @@ namespace TeaDB
             if (inMemoryStore.ContainsKey(internalKey))
             {
                 return inMemoryStore[internalKey];
-             }
-            return null;
+            }
+            else {
+                return Persister.load(new DTO(internalKey));
+
+            }
+           
         }
 
         public static string hash(string value)
