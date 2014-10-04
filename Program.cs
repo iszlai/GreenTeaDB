@@ -11,7 +11,7 @@ namespace TeaDB
     {
         static void Main(string[] args)
         {
-            StringDBOperation connection = StringDBOperation.getDBOperation();
+            StringDBOperation connection = StringDBOperation.getDBOperation("something1/");
             connection.store("alma", "korte1");
             connection.store("alma1", "korte1");
             connection.store("alma2", "korte1");

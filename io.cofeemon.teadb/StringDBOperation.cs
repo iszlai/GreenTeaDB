@@ -20,6 +20,13 @@ namespace TeaDB
             inMemoryStore=new Dictionary<string,string>();
         }
 
+        public static StringDBOperation getDBOperation(string path) {
+            path=path.EndsWith("/")  ? path : path+"/";
+            Persister.basedir = path + Persister.BASE_DIRECTORY;
+            return StringDBOperation.getDBOperation();
+        
+        }
+
         public static StringDBOperation getDBOperation()
         {
 
