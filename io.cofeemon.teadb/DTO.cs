@@ -24,6 +24,7 @@ namespace TeaDB.io.cofeemon.teadb
             subFolder_ = key[1];
             key_ = key;
             value_ = value;
+            
         }
 
         public DTO(string key)
@@ -31,6 +32,7 @@ namespace TeaDB.io.cofeemon.teadb
             topFolder_ = key[0];
             subFolder_ = key[1];
             key_ = key;
+           
         }
 
         public string dirpath() {
@@ -40,6 +42,10 @@ namespace TeaDB.io.cofeemon.teadb
         public string filepath()
         {
             return string.Join("/", topFolder, subFolder, key);
+        }
+
+        public string toString() {
+            return topFolder_ + " " + subFolder_ + " " + key + " " + value;
         }
 
        
