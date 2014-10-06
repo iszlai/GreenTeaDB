@@ -18,14 +18,15 @@ namespace TeaDB
 
         private StringDBOperation()
         {
-            inMemoryStore=new Dictionary<string,string>();
+            inMemoryStore = new Dictionary<string, string>();
         }
 
-        public static StringDBOperation getDBOperation(string path) {
-            path=path.EndsWith("/")  ? path : path+"/";
+        public static StringDBOperation getDBOperation(string path)
+        {
+            path = path.EndsWith("/") ? path : path + "/";
             Persister.basedir = path + Persister.BASE_DIRECTORY;
             return StringDBOperation.getDBOperation();
-        
+
         }
 
         public static StringDBOperation getDBOperation()
@@ -46,7 +47,7 @@ namespace TeaDB
 
         public void store(string key, string value)
         {
-             safe.AcquireWriterLock(-1);
+            safe.AcquireWriterLock(-1);
             try
             {
                 var internalkey = StringDBOperation.hash(key);
@@ -65,21 +66,21 @@ namespace TeaDB
             safe.AcquireReaderLock(-1);
             try
             {
-            var internalKey = StringDBOperation.hash(key);
-            if (inMemoryStore.ContainsKey(internalKey))
-            {
-                return inMemoryStore[internalKey];
-            }
-            else {
-                return Persister.load(new DTO(internalKey));
-
-            }
+                var internalKey = StringDBOperation.hash(key);
+                if (inMemoryStore.ContainsKey(internalKey))
+                {
+                    return inMemoryStore[internalKey];
+                }
+                else
+                {
+                    return Persister.load(new DTO(internalKey));
+                }
             }
             finally
             {
                 safe.ReleaseReaderLock();
             }
-           
+
         }
 
         public static string hash(string value)
