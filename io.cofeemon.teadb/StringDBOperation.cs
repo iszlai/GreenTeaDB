@@ -12,6 +12,7 @@ namespace TeaDB
         private Dictionary<string, string> inMemoryStore;
         private static volatile StringDBOperation instance = null;
         private static object syncRoot = new Object();
+        private static System.Threading.ReaderWriterLock safe = new System.Threading.ReaderWriterLock();
 
 
 
@@ -45,15 +46,25 @@ namespace TeaDB
 
         public void store(string key, string value)
         {
-            var internalkey = StringDBOperation.hash(key);
-            inMemoryStore.Add(internalkey, value);
-            Persister.save(new DTO(internalkey, value));
-            
+             safe.AcquireWriterLock(-1);
+            try
+            {
+                var internalkey = StringDBOperation.hash(key);
+                inMemoryStore.Add(internalkey, value);
+                Persister.save(new DTO(internalkey, value));
+            }
+            finally
+            {
+                safe.ReleaseWriterLock();
+            }
 
         }
 
         public string fetch(string key)
         {
+            safe.AcquireReaderLock(-1);
+            try
+            {
             var internalKey = StringDBOperation.hash(key);
             if (inMemoryStore.ContainsKey(internalKey))
             {
@@ -62,6 +73,11 @@ namespace TeaDB
             else {
                 return Persister.load(new DTO(internalKey));
 
+            }
+            }
+            finally
+            {
+                safe.ReleaseReaderLock();
             }
            
         }
