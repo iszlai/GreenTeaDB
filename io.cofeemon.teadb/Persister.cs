@@ -12,7 +12,7 @@ namespace TeaDB.io.cofeemon.teadb
         public const string BASE_DIRECTORY = "tea.db/";
         public static string basedir = BASE_DIRECTORY;
         public static void save(DTO toPersist) {
-           
+           		//Save to db
                 System.IO.Directory.CreateDirectory(basedir + toPersist.dirpath());
                 System.IO.File.WriteAllText(basedir + toPersist.filepath(), toPersist.value);
          
