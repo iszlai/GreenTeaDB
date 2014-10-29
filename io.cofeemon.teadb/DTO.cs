@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace TeaDB.io.cofeemon.teadb
 {
-    class DTO
+    Public class DTO
     {
       
         string key_;
