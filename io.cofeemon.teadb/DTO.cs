@@ -8,20 +8,19 @@ namespace TeaDB.io.cofeemon.teadb
 {
     class DTO
     {
-        char topFolder_;
-        char subFolder_;
+      
         string key_;
         string value_;
-        public char topFolder { get { return topFolder_; } }
-        public char subFolder { get { return subFolder_; } }
+        public char TopFolder { get; private set;}
+        public char SubFolder { get; private set;  }
         public string key { get { return key_; } }
         public string value { get { return value_; } }
         //public string value { get; } igy ctorba nem tudok  this.value = value;
 
         public DTO(string key,string value)
         {
-            topFolder_ = key[0];
-            subFolder_ = key[1];
+            TopFolder = key[0];
+            SubFolder_ = key[1];
             key_ = key;
             value_ = value;
             
@@ -29,8 +28,8 @@ namespace TeaDB.io.cofeemon.teadb
 
         public DTO(string key)
         {
-            topFolder_ = key[0];
-            subFolder_ = key[1];
+            TopFolder_ = key[0];
+            SubFolder_ = key[1];
             key_ = key;
            
         }
