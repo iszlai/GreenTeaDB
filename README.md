@@ -17,3 +17,5 @@ Usage:
 Fetch from db:
 
 `connection.fetch("key");`
+
+Check out ghostdoc
