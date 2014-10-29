@@ -18,4 +18,4 @@ Fetch from db:
 
 `connection.fetch("key");`
 
-Check out ghostdoc
+Check out ghostdoc,pascal case 
