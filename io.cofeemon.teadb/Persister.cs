@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace TeaDB.io.cofeemon.teadb
 {
-    class Persister
+    public class Persister
     {
         
         public const string BASE_DIRECTORY = "tea.db/";
@@ -21,7 +21,7 @@ namespace TeaDB.io.cofeemon.teadb
         public static string load(DTO toLoad) {
             
 
-                string filepath = basedir + toLoad.filepath();
+                var filepath = basedir + toLoad.filepath();
                 if (System.IO.File.Exists(filepath))
                 {
                     return System.IO.File.ReadAllText(filepath);
