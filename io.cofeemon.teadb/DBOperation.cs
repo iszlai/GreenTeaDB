@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace TeaDB
 {
-    interface DBOperation
+    public interface DBOperation
     {
         void store(String key, String value);
         String fetch(String key);
