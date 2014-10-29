@@ -7,7 +7,7 @@ using TeaDB.io.cofeemon.teadb;
 
 namespace TeaDB
 {
-    class StringDBOperation : DBOperation
+    public class StringDBOperation : DBOperation
     {
         private Dictionary<string, string> inMemoryStore;
         private static volatile StringDBOperation instance = null;
